@@ -1,0 +1,16 @@
+{
+    // DSN is the amqp address
+    // The format is amqp://user:password@host:port/vhost
+	// such as amqp://iyidan:123456@127.0.0.1:5672//aaa (the created vhost is /aaa not aaa)
+	// Notice: user/password must be urlencoded if necessary
+	// Notice: vhost maybe have a leading slash
+    "dsn":"amqp://test:test@local-02:5672/test",
+
+    "maxChannelsPerConnection":20000,
+    "maxIdleChannels":500,
+    "maxConnections":2000,
+    "minConnections":5,
+
+    // http api address
+    "httpListenAddr":"127.0.0.1:35673"
+}
