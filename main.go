@@ -12,10 +12,19 @@ import (
 
 	"time"
 
+	"fmt"
+
 	"github.com/iyidan/http-proxy-amqp/apiserver"
 	"github.com/iyidan/http-proxy-amqp/config"
 	"github.com/iyidan/http-proxy-amqp/pool"
 	"github.com/ngaut/log"
+)
+
+// VERSION program version
+const VERSION = "1.0.0"
+
+var (
+	flagPrintVersion = flag.Bool("v", false, "print program version")
 )
 
 func main() {
@@ -30,6 +39,11 @@ func main() {
 		syscall.SIGQUIT)
 
 	flag.Parse()
+
+	if *flagPrintVersion {
+		fmt.Println("current version is", VERSION)
+		return
+	}
 
 	conf := config.InitConfig()
 	connPool := pool.NewPool(conf)
