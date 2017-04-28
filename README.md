@@ -41,7 +41,7 @@ It is recommended to use supervisord to start
 ./http-proxy-amqp -config=path_to_config_file.json
 ```
 _path_to_config_file.json_
-```json
+```
 {
     // DSN is the amqp address
     // The format is amqp://user:password@host:port/vhost
