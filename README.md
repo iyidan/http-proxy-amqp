@@ -11,8 +11,28 @@ And maintains a long connection to MQ to improve performance.
 
 ## [Install]
 go version: go1.8.1+
-```go
-go get github.com/iyidan/http-proxy-amqp
+```shell
+$ go get github.com/iyidan/http-proxy-amqp
+
+$ http-proxy-amqp -h
+Usage of http-proxy-amqp:
+  -config string
+    	The config file
+  -debug
+    	if true, will print pool stats per requests
+  -dsn string
+    	The amqp address
+  -httpListenAddr string
+    	http api listen address
+  -maxChannelsPerConnection int
+    	The max channels per connection
+  -maxConnections int
+    	The max connections for this process
+  -maxIdleChannels int
+    	The max idle channels for this process
+  -minConnections int
+    	The min connections keeped for this process
+
 ```
 
 ## [Start]
