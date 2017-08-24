@@ -49,9 +49,6 @@ func main() {
 	connPool := pool.NewPool(conf)
 
 	srv := apiserver.InitServer(connPool)
-
-	srv.Shutdown(context.Background())
-
 	log.Infof("server started\n with conf: %#v\n", *conf)
 
 	s := <-sc
@@ -60,15 +57,8 @@ func main() {
 	// graceful shutdown server
 	timeout := time.Second * 3
 	ctx, cancelf := context.WithTimeout(context.Background(), timeout)
-	srv.Shutdown(ctx)
-	select {
-	case <-ctx.Done():
-		log.Info("server closed")
-	case <-time.After(timeout):
-		cancelf()
-		<-ctx.Done()
-	}
-	if ctx.Err() != nil {
+	defer cancelf()
+	if err := srv.Shutdown(ctx); err != nil {
 		log.Errorf("Shutdown server error: %s\n", ctx.Err())
 	}
 
